@@ -55,7 +55,9 @@ export class Currency {
     [ChainId.HARMONY]: Currency.ONE,
     [ChainId.HARMONY_TESTNET]: Currency.ONE,
     [ChainId.OKEX]: Currency.OKT,
-    [ChainId.OKEX_TESTNET]: Currency.OKT
+    [ChainId.OKEX_TESTNET]: Currency.OKT,
+    //TDOD what is native currency
+    [ChainId.LA]:Currency.ETHER
   }
 
   /**

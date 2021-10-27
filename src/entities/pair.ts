@@ -3,6 +3,7 @@ import { TokenAmount } from './fractions/tokenAmount'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { pack, keccak256 } from '@ethersproject/solidity'
+import { defaultAbiCoder } from '@ethersproject/abi'
 import { getCreate2Address } from '@ethersproject/address'
 
 import {
@@ -37,14 +38,26 @@ export class Pair {
           ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
           [tokens[1].address]: getCreate2Address(
             FACTORY_ADDRESS[tokenA.chainId],
-            keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
+              keccak256(['bytes'], [defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])]),
             INIT_CODE_HASH
           )
         }
       }
     }
 
-    return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+    // FACTORY_ADDRESS[tokenA.chainId]
+    // defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])
+    // INIT_CODE_HASH
+    // console.log('CHECK_ADDRESS',{
+    //   'tokens[0].address':tokens[0].address,
+    //   'tokens[1].address':tokens[1].address,
+    //   'FACTORY_ADDRESS[tokenA.chainId]':FACTORY_ADDRESS[tokenA.chainId],
+    //   "defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])":defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address]),
+    //   'INIT_CODE_HASH':INIT_CODE_HASH
+    // })
+    const pairAddress = PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+    console.log('pairAddress',pairAddress)
+    return pairAddress
   }
 
   public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount) {

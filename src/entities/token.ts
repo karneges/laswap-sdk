@@ -170,5 +170,6 @@ export const WETH = {
     18,
     'WOKT',
     'Wrapped OKExChain'
-  )
+  ),
+  [ChainId.LA]: new Token(ChainId.LA, '0xdDfc04bb9E600Ff5586fe165a2B5572824De9140', 18, 'WETH', 'Wrapped Ether'),
 }
