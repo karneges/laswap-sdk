@@ -27,37 +27,39 @@ let PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: st
 export class Pair {
   public readonly liquidityToken: Token
   private readonly tokenAmounts: [TokenAmount, TokenAmount]
-
+  //@ts-ignore
   public static getAddress(tokenA: Token, tokenB: Token): string {
-    const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
+    try {
+      const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
 
-    if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
-      PAIR_ADDRESS_CACHE = {
-        ...PAIR_ADDRESS_CACHE,
-        [tokens[0].address]: {
-          ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
-          [tokens[1].address]: getCreate2Address(
-            FACTORY_ADDRESS[tokenA.chainId],
-              keccak256(['bytes'], [defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])]),
-            INIT_CODE_HASH
-          )
+      if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
+        PAIR_ADDRESS_CACHE = {
+          ...PAIR_ADDRESS_CACHE,
+          [tokens[0].address]: {
+            ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
+            [tokens[1].address]: getCreate2Address(
+                FACTORY_ADDRESS[tokenA.chainId],
+                keccak256(['bytes'], [defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])]),
+                INIT_CODE_HASH
+            )
+          }
         }
       }
+      const pairAddress = PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+
+      console.log('CHECK_ADDRESS',{
+        'tokens[0].name':tokens[0].name,
+        'tokens[1].name':tokens[1].name,
+        'FACTORY_ADDRESS[tokenA.chainId]':FACTORY_ADDRESS[tokenA.chainId],
+        "defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])":defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address]),
+        'INIT_CODE_HASH':INIT_CODE_HASH,
+        'pairAddress':pairAddress
+      })
+      return pairAddress
+    } catch (e) {
+      debugger
     }
 
-    // FACTORY_ADDRESS[tokenA.chainId]
-    // defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])
-    // INIT_CODE_HASH
-    // console.log('CHECK_ADDRESS',{
-    //   'tokens[0].address':tokens[0].address,
-    //   'tokens[1].address':tokens[1].address,
-    //   'FACTORY_ADDRESS[tokenA.chainId]':FACTORY_ADDRESS[tokenA.chainId],
-    //   "defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address])":defaultAbiCoder.encode(['address', 'address'], [tokens[0].address, tokens[1].address]),
-    //   'INIT_CODE_HASH':INIT_CODE_HASH
-    // })
-    const pairAddress = PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
-    console.log('pairAddress',pairAddress)
-    return pairAddress
   }
 
   public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount) {

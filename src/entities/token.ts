@@ -58,7 +58,7 @@ export function currencyEquals(currencyA: Currency, currencyB: Currency): boolea
 
 // In reality this is a map of the wrapped version of the native token for a given network.
 // TODO: Rename to WNATIVE for sanity
-export const WETH = {
+export const WETH:Record<string, Token> = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
     '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
@@ -171,5 +171,7 @@ export const WETH = {
     'WOKT',
     'Wrapped OKExChain'
   ),
-  [ChainId.LA]: new Token(ChainId.LA, '0xdDfc04bb9E600Ff5586fe165a2B5572824De9140', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.LA_TEST_NET]: new Token(ChainId.LA_TEST_NET, '0xe66c9c4D573eDD86468F95F0B636719044708F92', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.LA_MAIN_NET]: new Token(ChainId.LA_TEST_NET, '0x3a898D596840C6B6b586d722bFAdCC8c4761BF41', 18, 'WETH', 'Wrapped Ether'),
+
 }

@@ -26,7 +26,9 @@ export enum ChainId {
   HARMONY_TESTNET = 1666700000,
   OKEX = 66,
   OKEX_TESTNET = 65,
-  LA = 27
+  LA_TEST_NET = 26,
+  LA_MAIN_NET = 25,
+
 }
 
 export enum TradeType {
@@ -40,7 +42,7 @@ export enum Rounding {
   ROUND_UP
 }
 
-export const INIT_CODE_HASH: string = '0x3b523c97e1ee2a2ef95aae54ad068fc3ed520cadc5d067b4df1e3ae21f66a6d0'
+export const INIT_CODE_HASH: string = '0x7ca0a78a801cff51ec45504b7df9b3d57369666190c02bfac470a14762a4694f'
 
 export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac',
@@ -65,7 +67,9 @@ export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
   [ChainId.OKEX]: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
   [ChainId.OKEX_TESTNET]: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
-  [ChainId.LA]: '0x7ffFc72b22a3A39f471574BEEDC0135767Bf344a'
+  [ChainId.LA_TEST_NET]: '0x72392D5F7040DA1fa7A9Dd40bBaBEb6E24f35f2e',
+  [ChainId.LA_MAIN_NET]: '0xcf784717408Db0c53b9E2EaDF71b324D1ec27840'
+
 }
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -91,7 +95,9 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
   [ChainId.OKEX]: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
   [ChainId.OKEX_TESTNET]: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
-  [ChainId.LA]: '0xD273968d28c104944f0A343B701CC0aC37891696'
+  [ChainId.LA_TEST_NET]: '0xeeF9F2eC6cC2eCbeF0003bb5606C81B16cf24943',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
 }
 
 export const SUSHI_ADDRESS: { [chainId in ChainId]: string } = {
@@ -117,7 +123,9 @@ export const SUSHI_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '',
   [ChainId.OKEX]: '',
   [ChainId.OKEX_TESTNET]: '',
-  [ChainId.LA]: '0x5F7832A4e1Cc385af56365588ab621e2Dc586601'
+  [ChainId.LA_TEST_NET]: '0xa47a1B3E4C5466F9D04E93950215C2F4Cf7f3009',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
 }
 
 export const MASTERCHEF_ADDRESS: { [chainId in ChainId]: string } = {
@@ -143,7 +151,9 @@ export const MASTERCHEF_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '',
   [ChainId.OKEX]: '',
   [ChainId.OKEX_TESTNET]: '',
-  [ChainId.LA]: '0xc8608AcEEf11c4C9E806b979E6a8A043c3d646D2'
+  [ChainId.LA_TEST_NET]: '0x5EAC933D9EBB6D2d0A432De9a643Ee62Fde40aB0',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
 }
 
 export const BAR_ADDRESS: { [chainId in ChainId]: string } = {
@@ -169,7 +179,11 @@ export const BAR_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '',
   [ChainId.OKEX]: '',
   [ChainId.OKEX_TESTNET]: '',
-  [ChainId.LA]: '0x2bF2eeFc2Af64f6cd036b30cEF1Ef5d3b0593Da2'
+  [ChainId.LA_TEST_NET]: '0x6da2B0DADB16bd788e12927Fc661484B1D130607',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
+
 }
 
 export const MAKER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -195,7 +209,9 @@ export const MAKER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '',
   [ChainId.OKEX]: '',
   [ChainId.OKEX_TESTNET]: '',
-  [ChainId.LA]: '0xa0e21976864B92dC5A62ad3c9eFCcc4cA9eA783d'
+  [ChainId.LA_TEST_NET]: '0x8f8e61beE51Bd64a6E4cD025F0B7F920a6D15690',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
 }
 
 export const TIMELOCK_ADDRESS: { [chainId in ChainId]: string } = {
@@ -221,7 +237,9 @@ export const TIMELOCK_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_TESTNET]: '',
   [ChainId.OKEX]: '',
   [ChainId.OKEX_TESTNET]: '',
-  [ChainId.LA]: '0x5e6b83Bf77Eb7E581bCC3465DD64be0552a110d1'
+  [ChainId.LA_TEST_NET]: '0xa3468d3dB7bab448200ca8f2a9037D4DB4271c5B',
+  [ChainId.LA_MAIN_NET]: '0xC1F70425f6CC7b3f00dD8593030E53d583EbbC71'
+
 }
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
